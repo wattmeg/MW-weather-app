@@ -1,6 +1,7 @@
 .container {
   display: block;
-  margin: 60px;
+  width: 50%;
+  margin: 60px auto;
   padding: 40px;
   border: 1px #f9f9ea solid;
   border-radius: 10px;
@@ -47,7 +48,8 @@
 }
 
 .icon-now {
-  text-align: right;
+  text-align: center;
+  padding: 20px 0;
 }
 
 .middle-results-row {
@@ -97,7 +99,7 @@ h6 {
 p {
   text-align: right;
   font-weight: 200;
-  font-size: 24px;
+  font-size: 20px;
 }
 
 i {
