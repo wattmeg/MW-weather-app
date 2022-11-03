@@ -1,0 +1,130 @@
+.container {
+  display: block;
+  margin: 60px;
+  padding: 40px;
+  border: 1px #f9f9ea solid;
+  border-radius: 10px;
+  background: linear-gradient(to top, #feffdf 0%, #ffe79a 50%, #feffdf 100%);
+  font-family: "Fira Sans", sans-serif;
+}
+
+.row {
+  font-family: "Fira Sans", sans-serif;
+}
+
+.search-box {
+  background: #feffdf;
+  border-radius: 5px;
+  margin-right: 10px;
+  font-weight: 200;
+  font-family: sans-serif;
+}
+
+.search-box:focus {
+  outline: none;
+}
+
+.search-button {
+  background: #ffe79a;
+  border-radius: 5px;
+  border: 1px solid black;
+  font-weight: 200;
+  font-family: sans-serif;
+  padding: 0px 6px;
+}
+
+.search-button:hover {
+  background: #ffa952;
+}
+.top-result-row {
+  padding: 20px 0 0 0;
+}
+
+.temperature-now {
+  text-align: center;
+  display: inline-block;
+  font-size: 32px;
+}
+
+.icon-now {
+  text-align: right;
+}
+
+.middle-results-row {
+  padding: 10px 0px;
+}
+
+.wind {
+  text-align: left;
+}
+.humidity {
+  text-align: right;
+}
+
+.sun-rise-set {
+  text-align: right;
+}
+
+.spotify-embed {
+  margin: 20px 0 0 0;
+  border: 5px #ef5a5a;
+}
+.future-days {
+  border-radius: 10px;
+}
+h1 {
+  font-weight: 600;
+}
+
+h2,
+h3,
+h4 {
+  font-weight: 300;
+}
+
+h3 {
+  font-size: 30px;
+}
+
+h4 {
+  font-size: 20px;
+}
+
+h6 {
+  font-weight: 300;
+}
+
+p {
+  text-align: right;
+  font-weight: 200;
+  font-size: 24px;
+}
+
+i {
+  color: #ffa952;
+}
+.fa-thin fa-cloud {
+  font-family: sans-serif;
+}
+
+.temps {
+  text-decoration: none;
+  color: #ef5a5a;
+  vertical-align: super;
+  font-size: 18px;
+}
+
+.temps:hover {
+  color: #870808;
+}
+
+.temp-divider {
+  vertical-align: super;
+  font-size: 18px;
+}
+
+.results {
+  font-size: 30px;
+  font-weight: 300;
+  text-align: left;
+}
