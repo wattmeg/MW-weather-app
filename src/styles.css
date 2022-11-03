@@ -1,7 +1,7 @@
 .container {
   display: block;
   width: 50%;
-  margin: 60px auto;
+  margin: 30px auto;
   padding: 40px;
   border: 1px #f9f9ea solid;
   border-radius: 10px;
@@ -74,6 +74,16 @@
 .future-days {
   border-radius: 10px;
 }
+
+.footer {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 200;
+  padding: 0;
+}
+
 h1 {
   font-weight: 600;
 }
