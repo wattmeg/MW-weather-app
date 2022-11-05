@@ -38,22 +38,22 @@ triggerSearch.addEventListener("click", searchCity);
 //search for city, temp in API
 function searchCity(event) {
   event.preventDefault();
-  let apiKey = "597c40c39084687093b091cd48b366f8";
+  let apiKey = "f5087t24cb396af33fo45026637ffd71";
   let newCity = document.querySelector("#city-search-input").value;
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${newCity}&units=metric&appid=${apiKey}`;
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${newCity}&units=metric&key=${apiKey}`;
   axios.get(apiUrl).then(showResults);
 }
 
 //show the search results
 function showResults(response) {
   let city = document.querySelector("#city-display");
-  let newCity = response.data.name;
+  let newCity = response.data.city;
   let oldTemp = document.querySelector("#current-temp");
-  let newTemp = Math.round(response.data.main.temp);
+  let newTemp = Math.round(response.data.temperature.current);
   let oldWind = document.querySelector("#wind-speed");
   let newWind = Math.round(response.data.wind.speed);
   let oldHumidity = document.querySelector("#humidity");
-  let newHumidity = Math.round(response.data.main.humidity);
+  let newHumidity = Math.round(response.data.temperature.humidity);
   city.innerHTML = newCity;
   oldTemp.innerHTML = `${newTemp}°`;
   oldWind.innerHTML = `Wind: ${newWind} km/h`;
@@ -90,20 +90,20 @@ function getLocation(event) {
 function showLocation(position) {
   let lat = position.coords.latitude;
   let lon = position.coords.longitude;
-  let apiKey = "597c40c39084687093b091cd48b366f8";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${apiKey}`;
+  let apiKey = "f5087t24cb396af33fo45026637ffd71";
+  let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${lat}&lon=${lon}&units=metric&key=${apiKey}`;
   axios.get(apiUrl).then(showLocals);
 }
 
 function showLocals(response) {
   let city = document.querySelector("#city-display");
-  newCity = response.data.name;
+  let newCity = response.data.city;
   let oldTemp = document.querySelector("#current-temp");
-  let newTemp = Math.round(response.data.main.temp);
+  let newTemp = Math.round(response.data.temperature.current);
   let oldWind = document.querySelector("#wind-speed");
   let newWind = Math.round(response.data.wind.speed);
   let oldHumidity = document.querySelector("#humidity");
-  let newHumidity = Math.round(response.data.main.humidity);
+  let newHumidity = Math.round(response.data.temperature.humidity);
   city.innerHTML = newCity;
   oldTemp.innerHTML = `${newTemp}°`;
   oldWind.innerHTML = `Wind: ${newWind} km/h`;
