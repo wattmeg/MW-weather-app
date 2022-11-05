@@ -56,8 +56,8 @@ function showResults(response) {
   let newHumidity = Math.round(response.data.main.humidity);
   city.innerHTML = newCity;
   oldTemp.innerHTML = `${newTemp}°`;
-  oldWind.innerHTML = `Wind speed is ${newWind} km/h`;
-  oldHumidity.innerHTML = `Humidity is ${newHumidity}%`;
+  oldWind.innerHTML = `Wind: ${newWind} km/h`;
+  oldHumidity.innerHTML = `Humidity: ${newHumidity}%`;
   //let oldIcon = document.querySelector("#icon-now");
   // let newIcon = response.data.weather.icon;
   // oldIcon.innerHTML = `${newIcon}`;
@@ -106,8 +106,8 @@ function showLocals(response) {
   let newHumidity = Math.round(response.data.main.humidity);
   city.innerHTML = newCity;
   oldTemp.innerHTML = `${newTemp}°`;
-  oldWind.innerHTML = `Wind speed is ${newWind} km/h`;
-  oldHumidity.innerHTML = `Humidity is ${newHumidity}%`;
+  oldWind.innerHTML = `Wind: ${newWind} km/h`;
+  oldHumidity.innerHTML = `Humidity: ${newHumidity}%`;
   //let oldIcon = document.querySelector("#icon-now");
   // let newIcon = response.data.weather.icon;
   // oldIcon.innerHTML = `${newIcon}`;
