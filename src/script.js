@@ -1,34 +1,27 @@
 //determine date
-let now = new Date();
+function formatDate(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  if (hours < 10) {
+    hours = `0${hours}`;
+  }
+  let minutes = date.getMinutes();
+  if (minutes < 10) {
+    minutes = `0${minutes}`;
+  }
 
-let days = [
-  "Sunday",
-  "Monday",
-  "Tuesday",
-  "Wednesday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-];
-
-function showDate(now) {
-  return today;
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[date.getDay()];
+  return `${day}, ${hours}:${minutes}`;
 }
-
-let day = days[now.getDay()];
-let today = `${day}`;
-let hours = [now.getHours()];
-let minutes = [now.getMinutes()];
-
-if (hours < 10) {
-  hours = `0${hours}`;
-}
-if (minutes < 10) {
-  minutes = `0${minutes}`;
-}
-
-let theDay = document.querySelector("#date-and-time");
-theDay.innerHTML = `${day} ${hours}:${minutes}`;
 //end of determine date
 
 //trigger the search
@@ -48,16 +41,21 @@ function searchCity(event) {
 function showResults(response) {
   let city = document.querySelector("#city-display");
   let newCity = response.data.city;
+  let oldCondition = document.querySelector("#icon-now");
+  let newCondition = response.data.condition.icon_url;
   let oldTemp = document.querySelector("#current-temp");
   let newTemp = Math.round(response.data.temperature.current);
   let oldWind = document.querySelector("#wind-speed");
   let newWind = Math.round(response.data.wind.speed);
   let oldHumidity = document.querySelector("#humidity");
   let newHumidity = Math.round(response.data.temperature.humidity);
+  let timeStamp = document.querySelector("#date-and-time");
   city.innerHTML = newCity;
+  oldCondition.innerHTML = newCondition;
   oldTemp.innerHTML = `${newTemp}°`;
   oldWind.innerHTML = `Wind: ${newWind} km/h`;
   oldHumidity.innerHTML = `Humidity: ${newHumidity}%`;
+  timeStamp.innerHTML = formatDate(response.data.time * 1000);
   //let oldIcon = document.querySelector("#icon-now");
   // let newIcon = response.data.weather.icon;
   // oldIcon.innerHTML = `${newIcon}`;
