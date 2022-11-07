@@ -1,4 +1,4 @@
-//determine date
+//display date and time
 function formatDate(timestamp) {
   let date = new Date(timestamp);
   let hours = date.getHours();
@@ -42,7 +42,6 @@ function showResults(response) {
   let city = document.querySelector("#city-display");
   let newCity = response.data.city;
   let oldCondition = document.querySelector("#icon-now");
-  let newCondition = response.data.condition.icon_url;
   let oldTemp = document.querySelector("#current-temp");
   let newTemp = Math.round(response.data.temperature.current);
   let oldWind = document.querySelector("#wind-speed");
@@ -51,7 +50,10 @@ function showResults(response) {
   let newHumidity = Math.round(response.data.temperature.humidity);
   let timeStamp = document.querySelector("#date-and-time");
   city.innerHTML = newCity;
-  oldCondition.innerHTML = newCondition;
+  oldCondition.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
   oldTemp.innerHTML = `${newTemp}°`;
   oldWind.innerHTML = `Wind: ${newWind} km/h`;
   oldHumidity.innerHTML = `Humidity: ${newHumidity}%`;
@@ -102,13 +104,15 @@ function showLocals(response) {
   let newWind = Math.round(response.data.wind.speed);
   let oldHumidity = document.querySelector("#humidity");
   let newHumidity = Math.round(response.data.temperature.humidity);
+  let oldIcon = document.querySelector("#icon-now");
   city.innerHTML = newCity;
   oldTemp.innerHTML = `${newTemp}°`;
   oldWind.innerHTML = `Wind: ${newWind} km/h`;
   oldHumidity.innerHTML = `Humidity: ${newHumidity}%`;
-  //let oldIcon = document.querySelector("#icon-now");
-  // let newIcon = response.data.weather.icon;
-  // oldIcon.innerHTML = `${newIcon}`;
+  oldIcon.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
   //let oldMinMax = document.querySelector("temp-min-max");
   // let newMin = Math.round(response.data.main.temp_min);
   // let newMax = Math.round(response.data.main.temp_max);
