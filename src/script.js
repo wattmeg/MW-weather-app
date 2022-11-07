@@ -54,6 +54,7 @@ function showResults(response) {
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
+  oldCondition.setAttribute("alt", `${response.data.condition.description}`);
   oldTemp.innerHTML = `${newTemp}°`;
   oldWind.innerHTML = `Wind: ${newWind} km/h`;
   oldHumidity.innerHTML = `Humidity: ${newHumidity}%`;
@@ -104,15 +105,16 @@ function showLocals(response) {
   let newWind = Math.round(response.data.wind.speed);
   let oldHumidity = document.querySelector("#humidity");
   let newHumidity = Math.round(response.data.temperature.humidity);
-  let oldIcon = document.querySelector("#icon-now");
+  let oldCondition = document.querySelector("#icon-now");
   city.innerHTML = newCity;
   oldTemp.innerHTML = `${newTemp}°`;
   oldWind.innerHTML = `Wind: ${newWind} km/h`;
   oldHumidity.innerHTML = `Humidity: ${newHumidity}%`;
-  oldIcon.setAttribute(
+  oldCondition.setAttribute(
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
+  oldCondition.setAttribute("alt", `${response.data.condition.description}`);
   //let oldMinMax = document.querySelector("temp-min-max");
   // let newMin = Math.round(response.data.main.temp_min);
   // let newMax = Math.round(response.data.main.temp_max);
