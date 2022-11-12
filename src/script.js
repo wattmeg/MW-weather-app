@@ -71,10 +71,15 @@ function showResults(response) {
   oldHumidity.innerHTML = `Humidity: ${newHumidity}%`;
   timeStamp.innerHTML = formatDate(response.data.time * 1000);
   celsiusTemperature = response.data.temperature.current;
+  //change background gradient based on temperature result
   if (celsiusTemperature >= 20) {
     gradient.classList.add("hot");
   } else if (celsiusTemperature <= 10) {
     gradient.classList.add("cold");
+  } else if (10 < celsiusTemperature < 20) {
+    gradient.classList.remove("cold");
+    gradient.classList.remove("hot");
+    gradient.classList.add("medium");
   }
   //let oldMinMax = document.querySelector("temp-min-max");
   // let newMin = Math.round(response.data.main.temp_min);
@@ -128,7 +133,6 @@ function showCelsius(event) {
   celsiusTemp.classList.add("active");
   newCelsius.innerHTML = Math.round(response.data.temperature.current);
 }
-// end of show celsius
 
 //show fahrenheit
 function showFahrenheit(event) {
