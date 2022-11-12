@@ -46,6 +46,25 @@
   text-align: center;
   display: inline-block;
   font-size: 32px;
+  color: black;
+}
+
+.temps {
+  color: #ffa952;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.active {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+}
+
+.active:hover {
+  text-decoration: none;
+  color: black;
+  cursor: default;
 }
 
 .icon-now {
@@ -91,6 +110,16 @@
   padding: 20px 0;
 }
 
+.fa-thin fa-cloud {
+  font-family: sans-serif;
+}
+
+.results {
+  font-size: 22px;
+  font-weight: 300;
+  text-align: left;
+}
+
 h1 {
   font-weight: 600;
 }
@@ -124,29 +153,4 @@ li {
 }
 i {
   color: #ffa952;
-}
-.fa-thin fa-cloud {
-  font-family: sans-serif;
-}
-
-.temps {
-  text-decoration: none;
-  color: #ef5a5a;
-  vertical-align: super;
-  font-size: 18px;
-}
-
-.temps:hover {
-  color: #870808;
-}
-
-.temp-divider {
-  vertical-align: super;
-  font-size: 18px;
-}
-
-.results {
-  font-size: 22px;
-  font-weight: 300;
-  text-align: left;
 }

@@ -59,29 +59,44 @@ function showResults(response) {
   oldWind.innerHTML = `Wind: ${newWind} km/h`;
   oldHumidity.innerHTML = `Humidity: ${newHumidity}%`;
   timeStamp.innerHTML = formatDate(response.data.time * 1000);
-  //let oldIcon = document.querySelector("#icon-now");
-  // let newIcon = response.data.weather.icon;
-  // oldIcon.innerHTML = `${newIcon}`;
+  celsiusTemperature = response.data.temperature.current;
+
   //let oldMinMax = document.querySelector("temp-min-max");
   // let newMin = Math.round(response.data.main.temp_min);
   // let newMax = Math.round(response.data.main.temp_max);
   //oldMinMax.innerHTML = `Min temp is ${newMin}, max temp is ${newMax}`;
 }
 
-// show celsius
-let celsiusTemp = document.querySelector("#temp-celsius-link");
-celsiusTemp.addEventListener("click", searchCity);
-
 //show fahrenheit
 function showFahrenheit(event) {
   event.preventDefault();
-  let temperature = document.querySelector("#current-temp");
-  temperature.innerHTML = `73`;
+  let fahrenheitTemperature = document.querySelector("#current-temp");
+  celsiusTemp.classList.remove("active");
+  fahrenheitTemp.classList.add("active");
+  let newFahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  fahrenheitTemperature.innerHTML = Math.round(newFahrenheitTemperature);
 }
 
 let fahrenheitTemp = document.querySelector("#temp-fahrenheit-link");
 fahrenheitTemp.addEventListener("click", showFahrenheit);
 // end of show fahrenheit
+
+// show celsius
+function showCelsius(event) {
+  event.preventDefault();
+  let newCelsiusTemperature = document.querySelector("#current-temp");
+  newCelsiusTemperature.innerHTML = Math.round(
+    response.data.temperature.current
+  );
+  celsiusTemp.classList.add("active");
+  fahrenheitTemp.classList.remove("active");
+}
+
+let celsiusTemp = document.querySelector("#temp-celsius-link");
+celsiusTemp.addEventListener("click", searchCity);
+// end of show celsius
+
+let celsiusTemperature = null;
 
 //my location button search
 function getLocation(event) {
