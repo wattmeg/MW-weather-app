@@ -1,3 +1,17 @@
+// GLOBAL VARIABLES
+let triggerSearch = document.querySelector("#search-button");
+let myLocation = document.querySelector("#my-location-button");
+let celsiusTemperature = null;
+let celsiusTemp = document.querySelector("#temp-celsius-link");
+let fahrenheitTemp = document.querySelector("#temp-fahrenheit-link");
+
+// FUNCTION TRIGGERS
+triggerSearch.addEventListener("click", searchCity);
+myLocation.addEventListener("click", getLocation);
+celsiusTemp.addEventListener("click", searchCity);
+fahrenheitTemp.addEventListener("click", showFahrenheit);
+celsiusTemp.addEventListener("click", showCelsius);
+
 //display date and time
 function formatDate(timestamp) {
   let date = new Date(timestamp);
@@ -51,7 +65,7 @@ function showResults(response) {
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
   oldCondition.setAttribute("alt", `${response.data.condition.description}`);
-  oldTemp.innerHTML = `${newTemp}°`;
+  oldTemp.innerHTML = `${newTemp}`;
   oldWind.innerHTML = `Wind: ${newWind} km/h`;
   oldHumidity.innerHTML = `Humidity: ${newHumidity}%`;
   timeStamp.innerHTML = formatDate(response.data.time * 1000);
@@ -87,7 +101,7 @@ function showLocals(response) {
   let newHumidity = Math.round(response.data.temperature.humidity);
   let oldCondition = document.querySelector("#icon-now");
   city.innerHTML = newCity;
-  oldTemp.innerHTML = `${newTemp}°`;
+  oldTemp.innerHTML = `${newTemp}`;
   oldWind.innerHTML = `Wind: ${newWind} km/h`;
   oldHumidity.innerHTML = `Humidity: ${newHumidity}%`;
   oldCondition.setAttribute(
@@ -101,6 +115,16 @@ function showLocals(response) {
   //oldMinMax.innerHTML = `Min temp is ${newMin}, max temp is ${newMax}`;
 }
 
+// show celsius
+function showCelsius(event) {
+  event.preventDefault();
+  let newCelsius = document.querySelector("#current-temp");
+  fahrenheitTemp.classList.remove("active");
+  celsiusTemp.classList.add("active");
+  newCelsius.innerHTML = Math.round(response.data.temperature.current);
+}
+// end of show celsius
+
 //show fahrenheit
 function showFahrenheit(event) {
   event.preventDefault();
@@ -111,30 +135,3 @@ function showFahrenheit(event) {
   fahrenheitTemperature.innerHTML = Math.round(newFahrenheitTemperature);
 }
 // end of show fahrenheit
-
-// show celsius
-function showCelsius(event) {
-  event.preventDefault();
-  let newCelsiusTemperature = document.querySelector("#current-temp");
-  newCelsiusTemperature.innerHTML = Math.round(
-    response.data.temperature.current
-  );
-  celsiusTemp.classList.add("active");
-  fahrenheitTemp.classList.remove("active");
-}
-// end of show celsius
-
-// GLOBAL VARIABLES
-let triggerSearch = document.querySelector("#search-button");
-triggerSearch.addEventListener("click", searchCity);
-
-let myLocation = document.querySelector("#my-location-button");
-myLocation.addEventListener("click", getLocation);
-
-let celsiusTemperature = null;
-
-let celsiusTemp = document.querySelector("#temp-celsius-link");
-celsiusTemp.addEventListener("click", searchCity);
-
-let fahrenheitTemp = document.querySelector("#temp-fahrenheit-link");
-fahrenheitTemp.addEventListener("click", showFahrenheit);
