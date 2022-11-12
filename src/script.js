@@ -13,6 +13,7 @@ myLocation.addEventListener("click", getLocation);
 celsiusTemp.addEventListener("click", searchCity);
 fahrenheitTemp.addEventListener("click", showFahrenheit);
 celsiusTemp.addEventListener("click", showCelsius);
+displayForecast();
 
 //display date and time
 function formatDate(timestamp) {
@@ -39,6 +40,19 @@ function formatDate(timestamp) {
   return `${day}, ${hours}:${minutes}`;
 }
 //end of determine date
+
+//build forecast days
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<li class="forecast"> Wednesday 20°/8° <i class="fa-solid fa-cloud"></i>`;
+  let forecastDays = ["Sun", "Mon", "Tue", "Weds", "Thurs"];
+  forecastDays.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `<li class="forecast"> Wednesday 20°/8° <i class="fa-solid fa-cloud"></i>`;
+  });
+  forecastElement.innerHTML = forecastHTML;
+}
 
 //search for city, temp in API
 function searchCity(event) {
