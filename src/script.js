@@ -5,6 +5,7 @@ let celsiusTemperature = null;
 let celsiusTemp = document.querySelector("#temp-celsius-link");
 let fahrenheitTemp = document.querySelector("#temp-fahrenheit-link");
 let gradient = document.querySelector("#container");
+let playlist = document.querySelector("#spotify-playlist");
 
 // FUNCTION TRIGGERS
 triggerSearch.addEventListener("click", searchCity);
@@ -72,19 +73,33 @@ function showResults(response) {
   timeStamp.innerHTML = formatDate(response.data.time * 1000);
   celsiusTemperature = response.data.temperature.current;
   //change background gradient based on temperature result
+  //update spotify playlist based on weather
   if (celsiusTemperature >= 20) {
     gradient.classList.remove("medium");
     gradient.classList.remove("cold");
     gradient.classList.add("hot");
+    playlist.setAttribute(
+      "src",
+      `https://open.spotify.com/embed/playlist/37i9dQZF1DWVLVzn60NyuA?utm_source=generator`
+    );
   } else if (celsiusTemperature <= 10) {
     gradient.classList.remove("hot");
     gradient.classList.remove("medium");
     gradient.classList.add("cold");
+    playlist.setAttribute(
+      "src",
+      `https://open.spotify.com/embed/playlist/37i9dQZF1DX97m5YXQMpCi?utm_source=generator`
+    );
   } else {
     gradient.classList.remove("hot");
     gradient.classList.remove("cold");
     gradient.classList.add("medium");
+    playlist.setAttribute(
+      "src",
+      `https://open.spotify.com/embed/playlist/37i9dQZF1DX1mPHJeSJNRN?utm_source=generator`
+    );
   }
+
   //let oldMinMax = document.querySelector("temp-min-max");
   // let newMin = Math.round(response.data.main.temp_min);
   // let newMax = Math.round(response.data.main.temp_max);
@@ -123,6 +138,20 @@ function showLocals(response) {
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
   oldCondition.setAttribute("alt", `${response.data.condition.description}`);
+  //change background gradient based on temperature result
+  if (celsiusTemperature >= 20) {
+    gradient.classList.remove("medium");
+    gradient.classList.remove("cold");
+    gradient.classList.add("hot");
+  } else if (celsiusTemperature <= 10) {
+    gradient.classList.remove("hot");
+    gradient.classList.remove("medium");
+    gradient.classList.add("cold");
+  } else {
+    gradient.classList.remove("hot");
+    gradient.classList.remove("cold");
+    gradient.classList.add("medium");
+  }
   //let oldMinMax = document.querySelector("temp-min-max");
   // let newMin = Math.round(response.data.main.temp_min);
   // let newMax = Math.round(response.data.main.temp_max);
