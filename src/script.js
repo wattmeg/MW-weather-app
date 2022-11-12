@@ -4,6 +4,7 @@ let myLocation = document.querySelector("#my-location-button");
 let celsiusTemperature = null;
 let celsiusTemp = document.querySelector("#temp-celsius-link");
 let fahrenheitTemp = document.querySelector("#temp-fahrenheit-link");
+let gradient = document.querySelector("#container");
 
 // FUNCTION TRIGGERS
 triggerSearch.addEventListener("click", searchCity);
@@ -70,7 +71,11 @@ function showResults(response) {
   oldHumidity.innerHTML = `Humidity: ${newHumidity}%`;
   timeStamp.innerHTML = formatDate(response.data.time * 1000);
   celsiusTemperature = response.data.temperature.current;
-
+  if (celsiusTemperature >= 20) {
+    gradient.classList.add("hot");
+  } else if (celsiusTemperature <= 10) {
+    gradient.classList.add("cold");
+  }
   //let oldMinMax = document.querySelector("temp-min-max");
   // let newMin = Math.round(response.data.main.temp_min);
   // let newMax = Math.round(response.data.main.temp_max);

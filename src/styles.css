@@ -10,6 +10,42 @@
   font-family: "Fira Sans", sans-serif;
 }
 
+.cold {
+  display: block;
+  max-width: 850px;
+  margin: 30px auto;
+  padding: 40px;
+  padding-bottom: 0;
+  border: 1px #e3f6f5 solid;
+  border-radius: 10px;
+  background: linear-gradient(to top, #e3f6f5 0%, #bae8e8 50%, #e3f6f5 100%);
+  font-family: "Fira Sans", sans-serif;
+}
+
+.medium {
+  display: block;
+  max-width: 850px;
+  margin: 30px auto;
+  padding: 40px;
+  padding-bottom: 0;
+  border: 1px #f9f9ea solid;
+  border-radius: 10px;
+  background: linear-gradient(to top, #feffdf 0%, #ffe79a 50%, #feffdf 100%);
+  font-family: "Fira Sans", sans-serif;
+}
+
+.hot {
+  display: block;
+  max-width: 850px;
+  margin: 30px auto;
+  padding: 40px;
+  padding-bottom: 0;
+  border: 1px #ff9a3c solid;
+  border-radius: 10px;
+  background: linear-gradient(to top, #ff9a3c 0%, #ff6f3c 50%, #ff9a3c 100%);
+  font-family: "Fira Sans", sans-serif;
+}
+
 .row {
   font-family: "Fira Sans", sans-serif;
 }
