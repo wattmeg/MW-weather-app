@@ -89,6 +89,7 @@
   color: #ffa952;
   text-decoration: none;
   font-size: 18px;
+  vertical-align: super;
 }
 
 .active {
