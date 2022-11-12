@@ -44,12 +44,13 @@ function formatDate(timestamp) {
 //build forecast days
 function displayForecast() {
   let forecastElement = document.querySelector("#forecast");
-  let forecastHTML = `<li class="forecast"> Wednesday 20°/8° <i class="fa-solid fa-cloud"></i>`;
-  let forecastDays = ["Sun", "Mon", "Tue", "Weds", "Thurs"];
+  let forecastDays = ["Sun", "Mon", "Tue", "Weds", "Thurs", "Fri"];
+  let forecastHTML = `<li class="forecast"></li>`;
+
   forecastDays.forEach(function (day) {
     forecastHTML =
       forecastHTML +
-      `<li class="forecast"> Wednesday 20°/8° <i class="fa-solid fa-cloud"></i>`;
+      `<li class="forecast"> ${day}  20°/8° <i class="fa-solid fa-cloud"></i> </li>`;
   });
   forecastElement.innerHTML = forecastHTML;
 }
