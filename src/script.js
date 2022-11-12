@@ -73,12 +73,16 @@ function showResults(response) {
   celsiusTemperature = response.data.temperature.current;
   //change background gradient based on temperature result
   if (celsiusTemperature >= 20) {
+    gradient.classList.remove("medium");
+    gradient.classList.remove("cold");
     gradient.classList.add("hot");
   } else if (celsiusTemperature <= 10) {
-    gradient.classList.add("cold");
-  } else if (10 < celsiusTemperature < 20) {
-    gradient.classList.remove("cold");
     gradient.classList.remove("hot");
+    gradient.classList.remove("medium");
+    gradient.classList.add("cold");
+  } else {
+    gradient.classList.remove("hot");
+    gradient.classList.remove("cold");
     gradient.classList.add("medium");
   }
   //let oldMinMax = document.querySelector("temp-min-max");
