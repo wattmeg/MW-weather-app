@@ -65,7 +65,7 @@ function displayForecast(response) {
         )}  ${Math.round(forecastDay.temperature.maximum)}°/ ${Math.round(
           forecastDay.temperature.minimum
         )}° <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
-          forecast[0].condition.icon
+          forecastDay.condition.icon
         }.png"/> </li>`;
     }
   });
