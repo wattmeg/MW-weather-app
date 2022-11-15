@@ -111,6 +111,9 @@ function showResults(response) {
   let oldCondition = document.querySelector("#icon-now");
   let oldTemp = document.querySelector("#current-temp");
   let newTemp = Math.round(response.data.temperature.current);
+  let oldFeels = document.querySelector("#description");
+  let newFeels = response.data.condition.description;
+  console.log(newFeels);
   let oldWind = document.querySelector("#wind-speed");
   let newWind = Math.round(response.data.wind.speed);
   let oldHumidity = document.querySelector("#humidity");
@@ -123,6 +126,7 @@ function showResults(response) {
   );
   oldCondition.setAttribute("alt", `${response.data.condition.description}`);
   oldTemp.innerHTML = `${newTemp}`;
+  oldFeels.innerHTML = `${newFeels}`;
   oldWind.innerHTML = `Wind: ${newWind} km/h`;
   oldHumidity.innerHTML = `Humidity: ${newHumidity}%`;
   timeStamp.innerHTML = formatDate(response.data.time * 1000);

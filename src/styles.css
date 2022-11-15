@@ -112,6 +112,10 @@
   padding: 10px 0px;
 }
 
+.description {
+  text-align: left;
+  text-transform: capitalize;
+}
 .wind {
   text-align: left;
   font-size: 16px;
