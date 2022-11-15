@@ -9,12 +9,12 @@ let playlist = document.querySelector("#spotify-playlist");
 
 // FUNCTION TRIGGERS
 triggerSearch.addEventListener("click", searchCity);
-triggerSearch.addEventListener("click", getForecast);
+triggerSearch.addEventListener("click", getForecastPicked);
 myLocation.addEventListener("click", getLocation);
+myLocation.addEventListener("click", getForecastLocal);
 celsiusTemp.addEventListener("click", searchCity);
 fahrenheitTemp.addEventListener("click", showFahrenheit);
 celsiusTemp.addEventListener("click", showCelsius);
-getForecast();
 
 //display date and time
 function formatDate(timestamp) {
@@ -50,6 +50,23 @@ function formatForecastDate(timestamp) {
   return days[day];
 }
 
+//receive forecast data for inputted city
+function getForecastPicked() {
+  let apiKey = "f5087t24cb396af33fo45026637ffd71";
+  let newCity = document.querySelector("#city-search-input").value;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${newCity}&units=metric&key=${apiKey}`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
+//receive local forecast data
+function getForecastLocal(position) {
+  let apiKey = "f5087t24cb396af33fo45026637ffd71";
+  let lat = position.coords.latitude;
+  let lon = position.coords.longitude;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${lon}&lat=${lat}&units=metric&key=${apiKey}`;
+  axios.get(apiUrl).then(displayForecast);
+}
+
 //build forecast days
 function displayForecast(response) {
   let forecast = response.data.daily;
@@ -76,14 +93,6 @@ function displayForecast(response) {
   let newHigh = `${Math.round(response.data.daily[0].temperature.maximum)}`;
   let newLow = `${Math.round(response.data.daily[0].temperature.minimum)}`;
   todayHighLow.innerHTML = `High ${newHigh}°C / Low ${newLow}°C`;
-}
-
-//receive forecast data
-function getForecast() {
-  let apiKey = "f5087t24cb396af33fo45026637ffd71";
-  let newCity = document.querySelector("#city-search-input").value;
-  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${newCity}&units=metric&key=${apiKey}`;
-  axios.get(apiUrl).then(displayForecast);
 }
 
 //search for city, temp in API
@@ -145,11 +154,6 @@ function showResults(response) {
       `https://open.spotify.com/embed/playlist/37i9dQZF1DX1mPHJeSJNRN?utm_source=generator`
     );
   }
-
-  //let oldMinMax = document.querySelector("temp-min-max");
-  // let newMin = Math.round(response.data.main.temp_min);
-  // let newMax = Math.round(response.data.main.temp_max);
-  //oldMinMax.innerHTML = `Min temp is ${newMin}, max temp is ${newMax}`;
 }
 
 //my location button search
@@ -198,10 +202,6 @@ function showLocals(response) {
     gradient.classList.remove("cold");
     gradient.classList.add("medium");
   }
-  //let oldMinMax = document.querySelector("temp-min-max");
-  // let newMin = Math.round(response.data.main.temp_min);
-  // let newMax = Math.round(response.data.main.temp_max);
-  //oldMinMax.innerHTML = `Min temp is ${newMin}, max temp is ${newMax}`;
 }
 
 // show celsius
