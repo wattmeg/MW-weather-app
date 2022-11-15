@@ -9,11 +9,12 @@ let playlist = document.querySelector("#spotify-playlist");
 
 // FUNCTION TRIGGERS
 triggerSearch.addEventListener("click", searchCity);
+triggerSearch.addEventListener("click", getForecast);
 myLocation.addEventListener("click", getLocation);
 celsiusTemp.addEventListener("click", searchCity);
 fahrenheitTemp.addEventListener("click", showFahrenheit);
 celsiusTemp.addEventListener("click", showCelsius);
-displayForecast();
+getForecast();
 
 //display date and time
 function formatDate(timestamp) {
@@ -41,18 +42,48 @@ function formatDate(timestamp) {
 }
 //end of determine date
 
+// format forecast date
+function formatForecastDate(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+
 //build forecast days
-function displayForecast() {
+function displayForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
-  let forecastDays = ["Sun", "Mon", "Tue", "Weds", "Thurs", "Fri"];
   let forecastHTML = `<li class="forecast"></li>`;
 
-  forecastDays.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `<li class="forecast"> ${day}  20°/8° <i class="fa-solid fa-cloud"></i> </li>`;
+  forecast.forEach(function (forecastDay, index) {
+    if (index > 0) {
+      forecastHTML =
+        forecastHTML +
+        `<li class="forecast"> ${formatForecastDate(
+          forecastDay.time
+        )}  ${Math.round(forecastDay.temperature.maximum)}°/ ${Math.round(
+          forecastDay.temperature.minimum
+        )}° <img src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+          forecast[0].condition.icon
+        }.png"/> </li>`;
+    }
   });
+
   forecastElement.innerHTML = forecastHTML;
+
+  let todayHighLow = document.querySelector("#temp-min-max");
+  let newHigh = `${Math.round(response.data.daily[0].temperature.maximum)}`;
+  let newLow = `${Math.round(response.data.daily[0].temperature.minimum)}`;
+  todayHighLow.innerHTML = `High ${newHigh}°C / Low ${newLow}°C`;
+}
+
+//receive forecast data
+function getForecast() {
+  let apiKey = "f5087t24cb396af33fo45026637ffd71";
+  let newCity = document.querySelector("#city-search-input").value;
+  let apiUrl = `https://api.shecodes.io/weather/v1/forecast?query=${newCity}&units=metric&key=${apiKey}`;
+  axios.get(apiUrl).then(displayForecast);
 }
 
 //search for city, temp in API

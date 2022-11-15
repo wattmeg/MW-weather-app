@@ -114,13 +114,19 @@
 
 .wind {
   text-align: left;
+  font-size: 16px;
+  font-weight: 300;
 }
 .humidity {
-  text-align: right;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 300;
 }
 
-.sun-rise-set {
+.highlow {
   text-align: right;
+  font-size: 16px;
+  font-weight: 300;
 }
 
 .spotify-embed {
@@ -134,10 +140,13 @@
 .forecast {
   text-align: right;
   list-style: none;
-  font-size: 20px;
+  font-size: 16px;
   font-weight: 200;
 }
 
+.forecast img {
+  width: 45px;
+}
 .footer {
   display: block;
   margin: 0 auto;
@@ -163,7 +172,8 @@ h1 {
 
 h2,
 h3,
-h4 {
+h4,
+h5 {
   font-weight: 300;
 }
 
@@ -185,9 +195,6 @@ p {
   font-size: 20px;
 }
 
-li {
-  padding: 10px 0;
-}
 i {
   color: #ffa952;
 }
