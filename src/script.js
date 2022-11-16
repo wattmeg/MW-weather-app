@@ -11,7 +11,6 @@ let playlist = document.querySelector("#spotify-playlist");
 triggerSearch.addEventListener("click", searchCity);
 triggerSearch.addEventListener("click", getForecastPicked);
 myLocation.addEventListener("click", getLocation);
-myLocation.addEventListener("click", getForecastLocal);
 celsiusTemp.addEventListener("click", searchCity);
 fahrenheitTemp.addEventListener("click", showFahrenheit);
 celsiusTemp.addEventListener("click", showCelsius);
@@ -113,7 +112,6 @@ function showResults(response) {
   let newTemp = Math.round(response.data.temperature.current);
   let oldFeels = document.querySelector("#description");
   let newFeels = response.data.condition.description;
-  console.log(newFeels);
   let oldWind = document.querySelector("#wind-speed");
   let newWind = Math.round(response.data.wind.speed);
   let oldHumidity = document.querySelector("#humidity");
@@ -171,6 +169,7 @@ function showLocation(position) {
   let apiKey = "f5087t24cb396af33fo45026637ffd71";
   let apiUrl = `https://api.shecodes.io/weather/v1/current?lat=${lat}&lon=${lon}&units=metric&key=${apiKey}`;
   axios.get(apiUrl).then(showLocals);
+  getForecastLocal(position);
 }
 
 function showLocals(response) {
@@ -178,6 +177,8 @@ function showLocals(response) {
   let newCity = response.data.city;
   let oldTemp = document.querySelector("#current-temp");
   let newTemp = Math.round(response.data.temperature.current);
+  let oldFeels = document.querySelector("#description");
+  let newFeels = response.data.condition.description;
   let oldWind = document.querySelector("#wind-speed");
   let newWind = Math.round(response.data.wind.speed);
   let oldHumidity = document.querySelector("#humidity");
@@ -185,6 +186,7 @@ function showLocals(response) {
   let oldCondition = document.querySelector("#icon-now");
   city.innerHTML = newCity;
   oldTemp.innerHTML = `${newTemp}`;
+  oldFeels.innerHTML = `${newFeels}`;
   oldWind.innerHTML = `Wind: ${newWind} km/h`;
   oldHumidity.innerHTML = `Humidity: ${newHumidity}%`;
   oldCondition.setAttribute(
