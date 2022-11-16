@@ -175,6 +175,7 @@ function showLocation(position) {
 function showLocals(response) {
   let city = document.querySelector("#city-display");
   let newCity = response.data.city;
+  let oldCondition = document.querySelector("#icon-now");
   let oldTemp = document.querySelector("#current-temp");
   let newTemp = Math.round(response.data.temperature.current);
   let oldFeels = document.querySelector("#description");
@@ -183,30 +184,45 @@ function showLocals(response) {
   let newWind = Math.round(response.data.wind.speed);
   let oldHumidity = document.querySelector("#humidity");
   let newHumidity = Math.round(response.data.temperature.humidity);
-  let oldCondition = document.querySelector("#icon-now");
+  let timeStamp = document.querySelector("#date-and-time");
   city.innerHTML = newCity;
-  oldTemp.innerHTML = `${newTemp}`;
-  oldFeels.innerHTML = `${newFeels}`;
-  oldWind.innerHTML = `Wind: ${newWind} km/h`;
-  oldHumidity.innerHTML = `Humidity: ${newHumidity}%`;
   oldCondition.setAttribute(
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
   oldCondition.setAttribute("alt", `${response.data.condition.description}`);
+  oldTemp.innerHTML = `${newTemp}`;
+  oldFeels.innerHTML = `${newFeels}`;
+  oldWind.innerHTML = `Wind: ${newWind} km/h`;
+  oldHumidity.innerHTML = `Humidity: ${newHumidity}%`;
+  timeStamp.innerHTML = formatDate(response.data.time * 1000);
+  celsiusTemperature = response.data.temperature.current;
   //change background gradient based on temperature result
+  //update spotify playlist based on weather
   if (celsiusTemperature >= 20) {
     gradient.classList.remove("medium");
     gradient.classList.remove("cold");
     gradient.classList.add("hot");
+    playlist.setAttribute(
+      "src",
+      `https://open.spotify.com/embed/playlist/37i9dQZF1DWVLVzn60NyuA?utm_source=generator`
+    );
   } else if (celsiusTemperature <= 10) {
     gradient.classList.remove("hot");
     gradient.classList.remove("medium");
     gradient.classList.add("cold");
+    playlist.setAttribute(
+      "src",
+      `https://open.spotify.com/embed/playlist/37i9dQZF1DX97m5YXQMpCi?utm_source=generator`
+    );
   } else {
     gradient.classList.remove("hot");
     gradient.classList.remove("cold");
     gradient.classList.add("medium");
+    playlist.setAttribute(
+      "src",
+      `https://open.spotify.com/embed/playlist/37i9dQZF1DX1mPHJeSJNRN?utm_source=generator`
+    );
   }
 }
 
